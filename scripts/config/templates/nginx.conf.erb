@@ -51,8 +51,10 @@ http {
   <% end %>
 
   <% if basic_auth %>
-    auth_basic "Restricted";
-    auth_basic_user_file <%= basic_auth_htpasswd_path %>;
+    location ~ \.map$ {
+      auth_basic "Restricted";
+      auth_basic_user_file <%= basic_auth_htpasswd_path %>;
+    }
   <% end %>
 
     location / {
