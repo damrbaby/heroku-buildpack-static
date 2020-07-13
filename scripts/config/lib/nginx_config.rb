@@ -29,6 +29,7 @@ class NginxConfig
 
     json["canonical_host"] ||= DEFAULT[:canonical_host]
     json["canonical_host"] = NginxConfigUtil.interpolate(json["canonical_host"], ENV) if json["canonical_host"]
+    json["canonical_host"] = false if json["canonical_host"] == ''
 
     index = 0
     json["proxies"] ||= {}

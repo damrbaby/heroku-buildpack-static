@@ -56,9 +56,11 @@ module NginxConfigUtil
     string.scan(regex).inject(string) do |acc, capture|
       var_name = capture.first
       value = vars[var_name] if vars
-      acc.sub!("${#{var_name}}", value) if value
-
-      acc
+      if value
+        acc.sub!("${#{var_name}}", value)
+      else
+        ''
+      end
     end
   end
 end
